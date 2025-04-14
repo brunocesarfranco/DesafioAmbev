@@ -36,11 +36,11 @@ Este projeto foi desenvolvido usando **C# .NET Core**, com integrações para **
 
 ### Pré-requisitos
 Para executar este projeto, certifique-se de que as seguintes ferramentas estão instaladas em seu sistema:
-- **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/)
+- **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0/runtime?cid=getdotnetcore&os=windows&arch=x64)
 - **Docker** (opcional): Para implantação em containers
 - **RabbitMQ**: Configuração do sistema de mensageria ([Guia de configuração do RabbitMQ](https://www.rabbitmq.com/documentation.html))
 - **PostgreSQL**: Para operações de banco de dados ([Documentação do PostgreSQL](https://www.postgresql.org/docs/))
-- **Postman**: Para testar as APIs ([Documentação do Postman](https://documenter.getpostman.com/view/27971159/2sB2cPkR3g))
+- **Postman**: Para testar as APIs ([Documentação do Postman]())
 
 ---
 
