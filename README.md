@@ -13,7 +13,7 @@ Este projeto foi desenvolvido usando **C# .NET Core**, com integrações para **
 
 ### Pré-requisitos
 Para executar este projeto, certifique-se de que as seguintes ferramentas estão instaladas em seu sistema:
-- **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0/runtime?cid=getdotnetcore&os=windows&arch=x64)
+- **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer)
 - **Docker** (opcional): Para implantação em containers
 - **RabbitMQ**: Configuração do sistema de mensageria ([Guia de configuração do RabbitMQ](https://www.rabbitmq.com/documentation.html))
 - **PostgreSQL**: Para operações de banco de dados ([Documentação do PostgreSQL](https://www.postgresql.org/docs/))
@@ -25,9 +25,14 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 - Antes de executar a aplicação, configure o banco de dados criando e aplicando as migrações
 - Execute a partir do caminho do projeto **Ambev.DeveloperEvaluation.ORM**
 
-1. **Criar uma nova migração**:
+1.**Instale o Entity Framework**:
     ```bash
-    dotnet ef migrations add NomeDaMigracao
+    dotnet tool install --global dotnet-ef
+    ```
+
+2. **Criar uma nova migração**:
+    ```bash
+    dotnet ef migrations add <NomeDaMigracao>
     ```
 
 2. **Aplicar as migrações ao banco de dados**:
@@ -44,6 +49,16 @@ Certifique-se de navegar até o diretório correto onde está o arquivo `docker-
 Execute o seguinte comando no terminal para construir e iniciar os contêineres:
 
 #### docker-compose up --build -d
+
+Caso tenha problemas com o docker, limpe o cache do Docker:
+
+Remova contêineres, imagens e caches antigos:
+
+```bash
+docker-compose down
+docker builder prune
+docker system prune -f
+```
 
 # Configuração das Tabelas
 ## 2: Configurar Tabelas Ambiente de Desenvolvimento
