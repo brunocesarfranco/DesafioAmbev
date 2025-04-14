@@ -60,8 +60,25 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
     dotnet ef database update
     ```
 
-Certifique-se de que o arquivo `.csproj` correto está especificado na opção `--project`.
+## Executando a Aplicação
 
+Certifique-se de que o arquivo `.csproj` correto esteja especificado na opção `--project`, se necessário.
+
+1. Navegue até o projeto WebApi:
+    ```bash
+    cd template/backend/src/Ambev.DeveloperEvaluation.WebApi
+    ```
+
+2. Execute a aplicação:
+    ```bash
+    dotnet run
+    ```
+
+A API estará disponível, geralmente, em:
+- `http://localhost:5000` ou 
+- `https://localhost:5001`
+
+Verifique a saída do console para confirmar o endereço exato.
 ---
 
 ## APIs da Aplicação
@@ -89,7 +106,7 @@ Certifique-se de que o arquivo `.csproj` correto está especificado na opção `
 
 ## Documentação do Postman
 
-Para testes detalhados e exemplos de APIs, consulte a [Documentação do Postman](https://documenter.getpostman.com/view/27971159/2sB2cPkR3g).
+Para testes detalhados e exemplos de APIs, consulte a [Documentação do Postman].
 
 ---
 
