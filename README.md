@@ -16,7 +16,7 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 - **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer)
 - **Docker** (opcional): Para implantação em containers
 - **RabbitMQ**: Configuração do sistema de mensageria ([Guia de configuração do RabbitMQ](https://www.rabbitmq.com/documentation.html))
-- **PostgreSQL**: Para operações de banco de dados ([Documentação do PostgreSQL](https://www.postgresql.org/docs/))
+- **PostgreSQL**: Para operações de banco de dados ([Baixe aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads))
 - **Postman**: Para testar as APIs ([Documentação do Postman]())
 
 ## Como Executar
