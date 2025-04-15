@@ -7,57 +7,56 @@ Este projeto foi desenvolvido usando **C# .NET Core**, com integrações para **
 ## Configuração do Ambiente de Desenvolvimento
 ### 1. **Pré-requisitos**
 Para executar este projeto, certifique-se de que as seguintes ferramentas estão instaladas em seu sistema:
-- **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer)
+- **.NET Core SDK (v8.0)**: ([Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer))
 - **Docker** (opcional): Para implantação em containers
 - **RabbitMQ**: Configuração do sistema de mensageria ([Guia de configuração do RabbitMQ](https://www.rabbitmq.com/documentation.html))
 - **PostgreSQL**: Para operações de banco de dados ([Baixe aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads))
 - **Postman**: Para testar as APIs ([Documentação do Postman]())
 
 ### 2. **Como Executar**
-2.1 Migrações de Banco de Dados:
+- 2.1 Migrações de Banco de Dados:
     - Antes de executar a aplicação, configure o banco de dados criando e aplicando as migrações
     - Execute a partir do caminho do projeto **Ambev.DeveloperEvaluation.ORM**
-
-2.2 **Instale o Entity Framework**:
+- 2.2 **Instale o Entity Framework**:
     ```
     dotnet tool install --global dotnet-ef
     ```
-2.3 **Criar uma nova migração**:
+- 2.3 **Criar uma nova migração**:
     ```
     dotnet ef migrations add <NomeDaMigracao>
     ```
-2.4 **Aplicar as migrações ao banco de dados**:
+- 2.4 **Aplicar as migrações ao banco de dados**:
     ```
     dotnet ef database update
     ```
 
 ### 3. **Para visualizar as tabelas via Docker**: 
-3.1 Via terminal, entre no container do PostgreSQL:
+- 3.1 Via terminal, entre no container do PostgreSQL:
     ```
     docker exec -it ambev_developer_evaluation_database bash
     ```
-3.2 Acesse o banco de dados com psql:
+- 3.2 Acesse o banco de dados com psql:
     ```
     psql -U developer -d developer_evaluation
     ``` 
-3.3 Liste todas as tabelas do schema público:
+- 3.3 Liste todas as tabelas do schema público:
     ```
     \dt public.*
     ```
-3.4 Para ver uma tabela em espeficio só fazer consultar via SQL:
+- 3.4 Para ver uma tabela em espeficio só fazer consultar via SQL:
     ```
     SELECT * FROM "Users";
     ```
-3.5 Para sair do psql:
+- 3.5 Para sair do psql:
     ```
     \q
     ```
 
 ### 4. Configurar Ambiente Docker
-1.1 - Acessar a pasta onde consta o arquivo `docker-compose.yml`
+1.1 Acessar a pasta onde consta o arquivo `docker-compose.yml`
 Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
 
-1.2 - Rodar o comando para iniciar o ambiente (Usando Docker)
+1.2 Rodar o comando para iniciar o ambiente (Usando Docker)
 Execute o seguinte comando no terminal para construir e iniciar os contêineres:
 ```
 docker-compose up --build -d
@@ -65,7 +64,7 @@ docker-compose up --build -d
 
 Caso tenha problemas com o Docker, limpe o cache e tente iniciar os contêineres novamente:
 
-Em ondem, faça os seguintes comandos em terminal
+Em ordem, faça os seguintes comandos em terminal
 ```bash
 docker-compose down
 docker builder prune
