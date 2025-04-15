@@ -105,7 +105,7 @@ A API estará disponível, geralmente, em:
 - `https://localhost:5001`
 
 Swagger disponivel em: 
-- `
+- `http://localhost:5000/swagger/index.html`
 
 Verifique a saída do console para confirmar o endereço exato.
 ---
