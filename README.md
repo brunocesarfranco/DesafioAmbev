@@ -13,6 +13,7 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 - **PostgreSQL**: Para operações de banco de dados ([Baixe aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads))
 - **Postman**: Para testar as APIs ([Documentação do Postman]())
 
+
 ### 2. **Como Executar**
 - 2.1 Migrações de Banco de Dados:
     - Antes de executar a aplicação, configure o banco de dados criando e aplicando as migrações
@@ -29,6 +30,7 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
     ```
     dotnet ef database update
     ```
+
 
 ### 3. **Para visualizar as tabelas via Docker**: 
 - 3.1 Via terminal, entre no container do PostgreSQL:
@@ -52,6 +54,7 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
     \q
     ```
 
+
 ### 4. Configurar Ambiente Docker
 1.1 Acessar a pasta onde consta o arquivo `docker-compose.yml`
 Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
@@ -70,6 +73,7 @@ docker-compose down
 docker builder prune
 docker system prune -f
 ```
+
 
 ### 5. Executando a Aplicação
 
