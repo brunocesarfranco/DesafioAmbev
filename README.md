@@ -39,23 +39,27 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
     ```
 
 3. **Para visualizar as tabelas via Docker**: 
-    1.Via terminal, entre no container do PostgreSQL:
+    
+    3.1 Via terminal, entre no container do PostgreSQL:
         ```bash
         docker exec -it ambev_developer_evaluation_database bash
         ```
-    2.Acesse o banco de dados com psql:
+
+    3.2 Acesse o banco de dados com psql:
         ```bash
         psql -U developer -d developer_evaluation
         ``` 
-    3. Liste todas as tabelas do schema público:
+    3.3 Liste todas as tabelas do schema público:
         ```bash
         \dt public.*
         ```
-    4. Para ver uma tabela em espeficio só fazer consultar via SQL:
+
+    3.4 Para ver uma tabela em espeficio só fazer consultar via SQL:
         ```bash
         SELECT * FROM "Users";
         ```
-    5. Para sair do psql:
+
+    3.5 Para sair do psql:
         ```
         \q
         ```
