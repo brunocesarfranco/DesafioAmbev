@@ -7,11 +7,9 @@ Este projeto foi desenvolvido usando **C# .NET Core**, com integrações para **
 
 ---
 
-# Configuração do Ambiente de Desenvolvimento
+## 1. Configuração do Ambiente de Desenvolvimento
 
-## Começando
-
-### Pré-requisitos
+### 1.1 Pré-requisitos
 Para executar este projeto, certifique-se de que as seguintes ferramentas estão instaladas em seu sistema:
 - **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer)
 - **Docker** (opcional): Para implantação em containers
@@ -19,26 +17,50 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 - **PostgreSQL**: Para operações de banco de dados ([Baixe aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads))
 - **Postman**: Para testar as APIs ([Documentação do Postman]())
 
-## Como Executar
+## 2. Como Executar
 
-### Migrações de Banco de Dados
+### 2.1 Migrações de Banco de Dados
 - Antes de executar a aplicação, configure o banco de dados criando e aplicando as migrações
 - Execute a partir do caminho do projeto **Ambev.DeveloperEvaluation.ORM**
 
-1.**Instale o Entity Framework**:
-    ```bash
+2.1**Instale o Entity Framework**:
+    ```
     dotnet tool install --global dotnet-ef
     ```
 
-2. **Criar uma nova migração**:
+2.2. **Criar uma nova migração**:
     ```bash
     dotnet ef migrations add <NomeDaMigracao>
     ```
 
-2. **Aplicar as migrações ao banco de dados**:
+2.3 **Aplicar as migrações ao banco de dados**:
     ```bash
     dotnet ef database update
     ```
+
+3. **Para visualizar as tabelas via Docker**: 
+    1.Via terminal, entre no container do PostgreSQL:
+        ```bash
+        docker exec -it ambev_developer_evaluation_database bash
+        ```
+    2.Acesse o banco de dados com psql:
+        ```bash
+        psql -U developer -d developer_evaluation
+        ``` 
+    3. Liste todas as tabelas do schema público:
+        ```bash
+        \dt public.*
+        ```
+    4. Para ver uma tabela em espeficio só fazer consultar via SQL:
+        ```bash
+        SELECT * FROM "Users";
+        ```
+    5. Para sair do psql:
+        ```
+        \q
+        ```
+
+
 
 ## 1: Configurar Ambiente de Desenvolvimento
 
