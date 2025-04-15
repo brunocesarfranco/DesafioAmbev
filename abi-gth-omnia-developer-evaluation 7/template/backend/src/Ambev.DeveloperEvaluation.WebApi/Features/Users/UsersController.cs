@@ -8,6 +8,8 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Users.DeleteUser;
 using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Application.Users.GetUser;
 using Ambev.DeveloperEvaluation.Application.Users.DeleteUser;
+using Ambev.DeveloperEvaluation.Application.Users.GetAllUsers;
+using Ambev.DeveloperEvaluation.WebApi.Features.Users.GetAllUsers;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Users;
 
@@ -67,7 +69,7 @@ public class UsersController : BaseController
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The user details if found</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ApiResponseWithData<GetUserResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponseWithData<GetUserResult>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUser([FromRoute] Guid id, CancellationToken cancellationToken)
@@ -79,14 +81,14 @@ public class UsersController : BaseController
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var command = _mapper.Map<GetUserCommand>(request.Id);
+        var command = new GetUserCommand(request.Id);
         var response = await _mediator.Send(command, cancellationToken);
 
-        return Ok(new ApiResponseWithData<GetUserResponse>
+        return Ok(new ApiResponseWithData<GetUserResult>
         {
             Success = true,
             Message = "User retrieved successfully",
-            Data = _mapper.Map<GetUserResponse>(response)
+            Data = response
         });
     }
 
@@ -109,13 +111,41 @@ public class UsersController : BaseController
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var command = _mapper.Map<DeleteUserCommand>(request.Id);
+        var command = new DeleteUserCommand(request.Id);
         await _mediator.Send(command, cancellationToken);
 
         return Ok(new ApiResponse
         {
             Success = true,
             Message = "User deleted successfully"
+        });
+    }
+
+/// <summary>
+    /// Retrieves all users
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>List of all users</returns>
+    [HttpGet("GetAllUsers")]
+    [ProducesResponseType(typeof(ApiResponseWithData<GetAllUsersResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
+    {
+        var request = new GetAllUsersRequest();
+        var validator = new GetAllUsersRequestValidator();
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+        if (!validationResult.IsValid)
+            return BadRequest(validationResult.Errors);
+
+        var command = _mapper.Map<GetAllUsersCommand>(request);
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return Ok(new ApiResponseWithData<GetAllUsersResponse>
+        {
+            Success = true,
+            Message = "Users retrieved successfully",
+            Data = response
         });
     }
 }

@@ -155,9 +155,14 @@ Para testes detalhados e exemplos de APIs, consulte a [Documentação do Postman
 
 ## Controle de Releases
 
-## Testes
+## Testes Funcionais
 
-1. Criação de User com Sucesso
-![alt text](Imagens/image.png)
+1. Criação de Usuario
+![alt text](Imagens/img1-CreateUser.png)
 
+2. Listagem de Usuario pelo Id
+![alt text](Imagens/img2-GetUserById.png)
+
+2.1 Listagem de todos Usuarios
+![alt text](Imagens/img3-GetAllUsers.png)
 
