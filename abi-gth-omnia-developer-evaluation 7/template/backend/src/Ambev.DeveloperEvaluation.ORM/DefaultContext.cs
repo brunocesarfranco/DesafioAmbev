@@ -2,41 +2,46 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 using System.Reflection;
 
-namespace Ambev.DeveloperEvaluation.ORM;
-
-public class DefaultContext : DbContext
+namespace Ambev.DeveloperEvaluation.ORM
 {
-    public DbSet<User> Users { get; set; }
-
-    public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
+    public class DefaultContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
+        // Adicione outros DbSets conforme necessário
+
+        public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DefaultContext>
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        base.OnModelCreating(modelBuilder);
-    }
-}
-public class YourDbContextFactory : IDesignTimeDbContextFactory<DefaultContext>
-{
-    public DefaultContext CreateDbContext(string[] args)
-    {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
+        public DefaultContext CreateDbContext(string[] args)
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-        var builder = new DbContextOptionsBuilder<DefaultContext>();
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var optionsBuilder = new DbContextOptionsBuilder<DefaultContext>();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-        builder.UseNpgsql(
-               connectionString,
-               b => b.MigrationsAssembly("Ambev.DeveloperEvaluation.WebApi")
-        );
+            optionsBuilder.UseNpgsql(
+                connectionString,
+                b => b.MigrationsAssembly(typeof(DefaultContext).Assembly.GetName().Name)
+                      .CommandTimeout(300) // Timeout aumentado para operações de migration
+            );
 
-        return new DefaultContext(builder.Options);
+            return new DefaultContext(optionsBuilder.Options);
+        }
     }
 }
