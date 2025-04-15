@@ -7,9 +7,9 @@ Este projeto foi desenvolvido usando **C# .NET Core**, com integrações para **
 
 ---
 
-## 1. Configuração do Ambiente de Desenvolvimento
+## Configuração do Ambiente de Desenvolvimento
 
-### 1.1 Pré-requisitos
+### 1. **Pré-requisitos**
 Para executar este projeto, certifique-se de que as seguintes ferramentas estão instaladas em seu sistema:
 - **.NET Core SDK (v8.0)**: [Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer)
 - **Docker** (opcional): Para implantação em containers
@@ -17,45 +17,46 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 - **PostgreSQL**: Para operações de banco de dados ([Baixe aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads))
 - **Postman**: Para testar as APIs ([Documentação do Postman]())
 
-## 2. Como Executar
+### 2. **Como Executar**:
 
-### 2.1 Migrações de Banco de Dados
+2.1 Migrações de Banco de Dados
 - Antes de executar a aplicação, configure o banco de dados criando e aplicando as migrações
 - Execute a partir do caminho do projeto **Ambev.DeveloperEvaluation.ORM**
 
-2.1**Instale o Entity Framework**:
-    ```
-    dotnet tool install --global dotnet-ef
-    ```
+    2.2**Instale o Entity Framework**:
+        ```
+        dotnet tool install --global dotnet-ef
+        ```
 
-2.2. **Criar uma nova migração**:
-    ```bash
-    dotnet ef migrations add <NomeDaMigracao>
-    ```
+    2.3. **Criar uma nova migração**:
+        ```bash
+        dotnet ef migrations add <NomeDaMigracao>
+        ```
 
-2.3 **Aplicar as migrações ao banco de dados**:
-    ```bash
-    dotnet ef database update
-    ```
+    2.4 **Aplicar as migrações ao banco de dados**:
+        ```bash
+        dotnet ef database update
+        ```
 
-3. **Para visualizar as tabelas via Docker**: 
+### 3. **Para visualizar as tabelas via Docker**: 
     
     3.1 Via terminal, entre no container do PostgreSQL:
-        ```bash
+        ```
         docker exec -it ambev_developer_evaluation_database bash
         ```
 
     3.2 Acesse o banco de dados com psql:
-        ```bash
+        ```
         psql -U developer -d developer_evaluation
         ``` 
+
     3.3 Liste todas as tabelas do schema público:
-        ```bash
+        ```
         \dt public.*
         ```
 
     3.4 Para ver uma tabela em espeficio só fazer consultar via SQL:
-        ```bash
+        ```
         SELECT * FROM "Users";
         ```
 
@@ -65,38 +66,25 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
         ```
 
 
+### 4: Configurar Ambiente
 
-## 1: Configurar Ambiente de Desenvolvimento
+    1.1 - Acessar a pasta onde consta o arquivo `docker-compose.yml`
+    Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
 
-### 1.1 - Acessar a pasta onde consta o arquivo `docker-compose.yml`
-Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
+    1.2 - Rodar o comando para iniciar o ambiente (Usando Docker)
+    Execute o seguinte comando no terminal para construir e iniciar os contêineres:
+    ```
+    docker-compose up --build -d
+    ```
 
-### 1.2 - Rodar o comando para iniciar o ambiente (Usando Docker)
-Execute o seguinte comando no terminal para construir e iniciar os contêineres:
+Caso tenha problemas com o Docker, limpe o cache e tente iniciar os contêineres novamente:
 
-#### docker-compose up --build -d
-
-Caso tenha problemas com o docker, limpe o cache do Docker:
-
-Remova contêineres, imagens e caches antigos:
-
+Em ondem, faça os seguintes comandos em terminal
 ```bash
 docker-compose down
 docker builder prune
 docker system prune -f
 ```
-
-# Configuração das Tabelas
-## 2: Configurar Tabelas Ambiente de Desenvolvimento
-
-### 2.1 - Acessar caminho do projeto 'Ambev.DeveloperEvaluation.ORM'
-Certifique-se de navegar até o diretório correto onde está o projeto.
-
-### 2.2 - Rodar o comando para iniciar as tabelas
-Execute o seguinte comando no terminal para construir e iniciar as tabelas:
-
-#### update-database
-
 
 ## Executando a Aplicação
 
@@ -115,6 +103,9 @@ Certifique-se de que o arquivo `.csproj` correto esteja especificado na opção 
 A API estará disponível, geralmente, em:
 - `http://localhost:5000` ou 
 - `https://localhost:5001`
+
+Swagger disponivel em: 
+- `
 
 Verifique a saída do console para confirmar o endereço exato.
 ---
@@ -163,3 +154,10 @@ Para testes detalhados e exemplos de APIs, consulte a [Documentação do Postman
 ---
 
 ## Controle de Releases
+
+## Testes
+
+1. Criação de User com Sucesso
+![alt text](Imagens/image.png)
+
+
