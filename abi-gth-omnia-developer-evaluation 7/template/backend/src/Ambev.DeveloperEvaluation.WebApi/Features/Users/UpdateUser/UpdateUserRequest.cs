@@ -1,12 +1,11 @@
 using Ambev.DeveloperEvaluation.Domain.Enums;
-using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Users.GetUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.UpdateUser;
 
 /// <summary>
-/// Response model for GetUser operation
+/// Request model for updating a user
 /// </summary>
-public class GetUserResult : IRequest<GetUserResponse>
+public class UpdateUserRequest
 {
     /// <summary>
     /// The unique identifier of the user
@@ -26,19 +25,15 @@ public class GetUserResult : IRequest<GetUserResponse>
     /// <summary>
     /// The user's phone number
     /// </summary>
-    public string Phone { get; set; } = string.Empty;   
+    public string Phone { get; set; } = string.Empty;
 
     /// <summary>
-    /// The user's role in the system
+    /// The user's role
     /// </summary>
     public UserRole Role { get; set; }
 
     /// <summary>
-    /// The current status of the user
+    /// The user's status
     /// </summary>
     public UserStatus Status { get; set; }
-}
-
-public class GetUserResponse
-{
 }
