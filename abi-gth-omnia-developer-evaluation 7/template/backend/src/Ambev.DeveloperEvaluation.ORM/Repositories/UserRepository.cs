@@ -82,4 +82,29 @@ public class UserRepository : IUserRepository
     {
         return await _context.Users.ToListAsync(cancellationToken);
     }
+
+    /// <summary>
+    /// Updates an existing user in the database
+    /// </summary>
+    /// <param name="user">The user entity with updated information</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The updated user</returns>
+    public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
+    {
+        var existingUser = await GetByIdAsync(user.Id, cancellationToken);
+        if (existingUser == null)
+            throw new InvalidOperationException("User not found");
+
+        // Atualiza os campos
+        existingUser.Username = user.Username;
+        existingUser.Email = user.Email;
+        existingUser.Password = user.Password;
+        existingUser.Phone = user.Phone;
+        existingUser.Status = user.Status;
+        existingUser.Role = user.Role;
+
+        _context.Users.Update(existingUser);
+        await _context.SaveChangesAsync(cancellationToken);
+        return existingUser;
+    }
 }

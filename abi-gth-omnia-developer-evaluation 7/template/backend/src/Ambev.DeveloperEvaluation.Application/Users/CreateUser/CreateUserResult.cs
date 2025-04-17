@@ -20,22 +20,22 @@ public class CreateUserResult
     /// <summary>
     /// Gets or sets the username of the user to be created.
     /// </summary>
-    public string Username { get; set; }
+    public string Username { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the password for the user.
     /// </summary>
-    public string Password { get; set; }
+    public string Password { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the phone number for the user.
     /// </summary>
-    public string Phone { get; set; }
+    public string Phone { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the email address for the user.
     /// </summary>
-    public string Email { get; set; }
+    public string Email { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the status of the user.
