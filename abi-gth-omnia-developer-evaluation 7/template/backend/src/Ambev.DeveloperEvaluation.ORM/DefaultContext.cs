@@ -10,7 +10,9 @@ namespace Ambev.DeveloperEvaluation.ORM
     public class DefaultContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        // Adicione outros DbSets conforme necessário
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+
 
         public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
         {
