@@ -97,7 +97,7 @@ Verifique a saída do console para confirmar o endereço exato.
 
 ## APIs da Aplicação
 ### APIs Planejadas:
-- **API de Autenticação**: Gerencia login via nome de usuário (não e-mail).
+- **API de Autenticação**: Gerencia login via e-mail.
 - **API de Produtos**: Busca informações de produtos e gerencia estoque.
 - **API de Usuários**: Gerencia cadastro, atualização e funções de usuários.
 - **API de Vendas**: Mencionada na documentação, mas precisa ser alinhada com os requisitos da primeira página.

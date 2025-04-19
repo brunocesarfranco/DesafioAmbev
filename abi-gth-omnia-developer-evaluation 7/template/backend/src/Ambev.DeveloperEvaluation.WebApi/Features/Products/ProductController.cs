@@ -1,28 +1,13 @@
+using Ambev.DeveloperEvaluation.Common.Validation;
+
+using Ambev.DeveloperEvaluation.WebApi.Common;
+using Ambev.DeveloperEvaluation.WebApi.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.WebApi.Products.GetProduct;
+
 using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 using Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;
 using Ambev.DeveloperEvaluation.Application.Products.GetProduct;
-using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
-using Ambev.DeveloperEvaluation.ORM.Repositories;
 
-// using Ambev.DeveloperEvaluation.Application.Products.DeleteProduct;
-// using Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;
-// using Ambev.DeveloperEvaluation.Application.Products.GetProductByCategory;
-// using Ambev.DeveloperEvaluation.Application.Products.GetProductById;
-// using Ambev.DeveloperEvaluation.Application.Products.GetProductByTitle;
-// using Ambev.DeveloperEvaluation.Application.Products.UpdateProduct;
-
-using Ambev.DeveloperEvaluation.WebApi.Common;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.DeleteProduct;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetAllProducts;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProductByCategory;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProductById;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProductByTitle;
-// using Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct;
-using Ambev.DeveloperEvaluation.WebApi.Products.CreateProduct;
-using Ambev.DeveloperEvaluation.WebApi.Products.GetAllProducts;
-using Ambev.DeveloperEvaluation.WebApi.Products.GetProduct;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -35,23 +20,21 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
+    //[Authorize]
     public class ProductsController : BaseController
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly IProductRepository _productRepository;
 
         /// <summary>
         /// Initializes a new instance of ProductsController
         /// </summary>
         /// <param name="mediator">The mediator instance</param>
         /// <param name="mapper">The AutoMapper instance</param>
-        public ProductsController(IMediator mediator, IMapper mapper, IProductRepository productRepository)
+        public ProductsController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
             _mapper = mapper;
-            _productRepository =  productRepository;
         }
 
         /// <summary>
@@ -92,7 +75,6 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
         [ProducesResponseType(typeof(ApiResponseWithData<GetProductResult>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        // [Authorize]
         public async Task<IActionResult> GetProduct([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var request = new GetProductRequest { Id = id };
@@ -145,7 +127,6 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
         [ProducesResponseType(typeof(ApiResponseWithData<GetAllProductsResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        // 
         public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken)
         {
             // Criando um comando para recuperar todos os produtos
