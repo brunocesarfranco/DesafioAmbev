@@ -5,3 +5,4 @@ namespace Ambev.DeveloperEvaluation.Common.Security
         string GenerateToken(IUser user);
     }
 }
+

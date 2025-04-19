@@ -8,10 +8,10 @@ Este projeto foi desenvolvido usando **C# .NET Core**, com integrações para **
 ### 1. **Pré-requisitos**
 Para executar este projeto, certifique-se de que as seguintes ferramentas estão instaladas em seu sistema:
 - **.NET Core SDK (v8.0)**: ([Baixe aqui](https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/sdk-8.0.408-windows-x64-installer))
-- **Docker**: Para implantação do ambiente em containers
+- **Docker**: Para implantação do ambiente em containers. ([Baixe aqui](https://www.docker.com/))
 - **RabbitMQ**: Configuração do sistema de mensageria ([Guia de configuração do RabbitMQ](https://www.rabbitmq.com/documentation.html))
 - **PostgreSQL**: Para operações de banco de dados (Não será necessário em caso usar Docker)([Baixe aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads))
-- **Postman**: Para testar as APIs ([Documentação do Postman]())
+- **Postman**: Para testar as APIs ([Baixe aqui](https://www.docker.com/))
 
 ### 2. Configurar Ambiente Docker
 2.1 Acessar a pasta onde consta o arquivo `docker-compose.yml`
