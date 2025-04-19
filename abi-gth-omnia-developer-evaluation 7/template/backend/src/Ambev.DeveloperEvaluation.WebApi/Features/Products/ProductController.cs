@@ -1,4 +1,10 @@
 using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;
+using Ambev.DeveloperEvaluation.Application.Products.GetProduct;
+using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.ORM.Repositories;
+
 // using Ambev.DeveloperEvaluation.Application.Products.DeleteProduct;
 // using Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;
 // using Ambev.DeveloperEvaluation.Application.Products.GetProductByCategory;
@@ -15,12 +21,12 @@ using Ambev.DeveloperEvaluation.WebApi.Common;
 // using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProductByTitle;
 // using Ambev.DeveloperEvaluation.WebApi.Features.Products.UpdateProduct;
 using Ambev.DeveloperEvaluation.WebApi.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.WebApi.Products.GetAllProducts;
+using Ambev.DeveloperEvaluation.WebApi.Products.GetProduct;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
 {
@@ -29,21 +35,23 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
     public class ProductsController : BaseController
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly IProductRepository _productRepository;
 
         /// <summary>
         /// Initializes a new instance of ProductsController
         /// </summary>
         /// <param name="mediator">The mediator instance</param>
         /// <param name="mapper">The AutoMapper instance</param>
-        public ProductsController(IMediator mediator, IMapper mapper)
+        public ProductsController(IMediator mediator, IMapper mapper, IProductRepository productRepository)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _productRepository =  productRepository;
         }
 
         /// <summary>
@@ -74,70 +82,93 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
             });
         }
 
-        // /// <summary>
-        // /// Retrieves a product by its ID
-        // /// </summary>
-        // /// <param name="id">The unique identifier of the product</param>
-        // /// <param name="cancellationToken">Cancellation token</param>
-        // /// <returns>The product details if found</returns>
-        // [HttpGet("{id}")]
-        // [ProducesResponseType(typeof(ApiResponseWithData<GetProductByIdResult>), StatusCodes.Status200OK)]
-        // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        // public async Task<IActionResult> GetProductById([FromRoute] Guid id, CancellationToken cancellationToken)
-        // {
-        //     var request = new GetProductByIdRequest { Id = id };
-        //     var validator = new GetProductByIdRequestValidator();
-        //     var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        /// <summary>
+        /// Retrieves a product by its ID
+        /// </summary>
+        /// <param name="id">The unique identifier of the product</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The product details if found</returns>
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ApiResponseWithData<GetProductResult>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        // [Authorize]
+        public async Task<IActionResult> GetProduct([FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            var request = new GetProductRequest { Id = id };
+            var validator = new GetProductRequestValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-        //     if (!validationResult.IsValid)
-        //         return BadRequest(validationResult.Errors);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(new ApiResponse
+                {
+                    Success = false,
+                    Message = "Invalid request",
+                    Errors = validationResult.Errors
+                        .Select(e => new ValidationErrorDetail
+                        {
+                            Detail = e.PropertyName,
+                            Error = e.ErrorMessage
+                        })
+                        .ToList()
+                });
+            }
 
-        //     var command = new GetProductByIdQuery(request.Id);
-        //     var response = await _mediator.Send(command, cancellationToken);
+            var command = new GetProductCommand(request.Id);
+            var response = await _mediator.Send(command, cancellationToken);
 
-        //     if (response == null)
-        //         return NotFound(new ApiResponse
-        //         {
-        //             Success = false,
-        //             Message = "Product not found"
-        //         });
+            if (response == null)
+            {
+                return NotFound(new ApiResponse
+                {
+                    Success = false,
+                    Message = "Product not found"
+                });
+            }
 
-        //     return Ok(new ApiResponseWithData<GetProductByIdResult>
-        //     {
-        //         Success = true,
-        //         Message = "Product retrieved successfully",
-        //         Data = response
-        //     });
-        // }
+            return Ok(new ApiResponseWithData<GetProductResult>
+            {
+                Success = true,
+                Message = "Product retrieved successfully",
+                Data = response
+            });
+        }
 
-        // /// <summary>
-        // /// Retrieves all products
-        // /// </summary>
-        // /// <param name="cancellationToken">Cancellation token</param>
-        // /// <returns>List of all products</returns>
-        // [HttpGet]
-        // [ProducesResponseType(typeof(ApiResponseWithData<GetAllProductsResponse>), StatusCodes.Status200OK)]
-        // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        // public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken)
-        // {
-        //     var request = new GetAllProductsRequest();
-        //     var validator = new GetAllProductsRequestValidator();
-        //     var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-        //     if (!validationResult.IsValid)
-        //         return BadRequest(validationResult.Errors);
+        /// <summary>
+        /// Retrieves all products
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>List of all products</returns>
+        [HttpGet("GetAllProducts")]
+        [ProducesResponseType(typeof(ApiResponseWithData<GetAllProductsResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        // 
+        public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken)
+        {
+            // Criando um comando para recuperar todos os produtos
+            var command = new GetAllProductsCommand();
+            var response = await _mediator.Send(command, cancellationToken);
 
-        //     var command = _mapper.Map<GetAllProductsQuery>(request);
-        //     var response = await _mediator.Send(command, cancellationToken);
+            // Verifica se a lista de produtos está vazia
+            if (response == null || !response.Products.Any())
+            {
+                return NotFound(new ApiResponse
+                {
+                    Success = false,
+                    Message = "No products found"
+                });
+            }
 
-        //     return Ok(new ApiResponseWithData<GetAllProductsResponse>
-        //     {
-        //         Success = true,
-        //         Message = "Products retrieved successfully",
-        //         Data = response
-        //     });
-        // }
+            return Ok(new ApiResponseWithData<GetAllProductsResponse>
+            {
+                Success = true,
+                Message = "Products retrieved successfully",
+                Data = response
+            });
+        }
 
         // /// <summary>
         // /// Retrieves products by category
