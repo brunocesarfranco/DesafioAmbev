@@ -31,9 +31,5 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(si => si.Discount)
             .HasColumnType("decimal(18,2)")
             .IsRequired();
-
-        //builder.Property(si => si.TotalItemAmount)
-        // .HasColumnType("decimal(18,2)");
-        //.HasComputedColumnSql("[UnitPrice] * [Quantity] - [Discount]", stored: true);
     }
 }

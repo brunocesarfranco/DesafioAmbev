@@ -8,6 +8,7 @@ public class Product : BaseEntity
     public int Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal Discount { get; set; }
+    public Guid? SaleId { get; set; }
 
     public void ApplyDiscount()
     {

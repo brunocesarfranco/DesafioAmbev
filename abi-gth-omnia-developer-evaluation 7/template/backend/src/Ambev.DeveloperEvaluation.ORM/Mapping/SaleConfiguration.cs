@@ -34,9 +34,5 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
         builder.Property(s => s.IsCancelled)
             .IsRequired();
 
-        builder.HasMany(s => s.Product)
-            .WithOne()
-            .HasForeignKey("SaleId")
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

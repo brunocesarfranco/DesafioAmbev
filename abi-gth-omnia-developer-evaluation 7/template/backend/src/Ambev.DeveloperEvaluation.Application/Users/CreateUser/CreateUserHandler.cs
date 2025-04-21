@@ -50,6 +50,10 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserRe
         var user = _mapper.Map<User>(command);
         user.Password = _passwordHasher.HashPassword(command.Password);
 
+        // Set the CreatedAt and UpdatedAt fields before saving
+        user.CreatedAt = DateTime.UtcNow;
+        user.UpdatedAt = DateTime.UtcNow;
+
         var createdUser = await _userRepository.CreateAsync(user, cancellationToken);
         var result = _mapper.Map<CreateUserResult>(createdUser);
         return result;
