@@ -143,8 +143,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                 {
                     b.HasOne("Ambev.DeveloperEvaluation.Domain.Entities.Sale", null)
                         .WithMany("Product")
-                        .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SaleId");
                 });
 
             modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Entities.Sale", b =>
