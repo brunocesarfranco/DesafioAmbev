@@ -15,6 +15,14 @@ public class Sale : BaseEntity
     public List<Product> Product { get; set; } = new();
     public List<ItemSale> Items { get; set; } = new();
 
+    // ✅ Construtor personalizado para facilitar criação com dados obrigatórios
+    public Sale(string customer, DateTime saleDate, string branch = "")
+    {
+        Customer = customer;
+        SaleDate = saleDate;
+        Branch = branch;
+    }
+
     public void CancelSale()
     {
         IsCancelled = true;
