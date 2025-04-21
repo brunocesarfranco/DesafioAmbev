@@ -14,6 +14,7 @@ public class SaleValidator : AbstractValidator<Sale>
         RuleFor(x => x.SaleDate).LessThanOrEqualTo(DateTime.Now);
         RuleFor(x => x.Product).NotEmpty().Must(x => x.Count > 0);
         RuleForEach(x => x.Product).SetValidator(new SaleProductValidator());
+        RuleFor(x => x.Items).NotEmpty().Must(x => x.Count > 0);
     }
 }
 
