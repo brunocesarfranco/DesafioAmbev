@@ -1,8 +1,10 @@
 # DesafioAmbev - abi-gth-omnia-developer-evaluation
 Desafio técnico Ambev.
 
+
 # Descrição
 Este projeto foi desenvolvido em **.NET Core 8.0 (C#)**, com utilização de **MediatR**, **Postgres**, **Docker** e **Entity Framework**. Feito com objetivo de passar em um desafio tecnico proposto pela Ambev. 
+
 
 ## Configuração do Ambiente de Desenvolvimento
 ### 1. **Pré-requisitos**
@@ -17,34 +19,36 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 - 2.1 Acessar a pasta onde consta o arquivo `docker-compose.yml`
 Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
 
-- 2.2 Rodar o comando para iniciar o ambiente (Usando Docker)
-Execute o seguinte comando no terminal para construir e iniciar os contêineres:
-```
-docker-compose up --build -d
-```
+- 2.2 Rodar o comando para iniciar o ambiente (Usando Docker).
+    -Execute o seguinte comando no terminal para construir e iniciar os contêineres:
+        ```
+        docker-compose up --build -d
+        ```
 
 - 2.3 Caso tenha problemas com o Docker, limpe o cache e tente iniciar os contêineres novamente:
-- Em ordem, faça os seguintes comandos em terminal
-    ```
-    docker-compose down
-    ```
+    - Em ordem, faça os seguintes comandos em terminal
+        ```
+        docker-compose down
+        ```
 
-    ```
-    docker builder prune
-    ```
+        ```
+        docker builder prune
+        ```
 
-    ```
-    docker system prune -f
-    ```
+        ```
+        docker system prune -f
+        ```
 
 
 ### 3. Gerar e configurar Banco de Dados (Migrations)
 - 3.1 **Migrações de Banco de Dados**:
+
     - Após iniciar os contêineres via Docker ou instalar o Postgre localmente, vamos aplicar as migrações para criar e configurar o banco de dados
+    
     - Execute a partir do caminho do projeto **Ambev.DeveloperEvaluation.ORM**
 
 - 3.2 **Navegue até o projeto ORM**:
-    ```bash
+    ```
     cd template/backend/src/Ambev.DeveloperEvaluation.ORM
     ```
 
@@ -111,12 +115,12 @@ docker-compose up --build -d
 Certifique-se de que o arquivo `.csproj` correto esteja especificado na opção `--project`, se necessário.
 
 5.1 Navegue até o projeto WebApi:
-    ```bash
+    ```
     cd template/backend/src/Ambev.DeveloperEvaluation.WebApi
     ```
 
 5.2 Execute a aplicação:
-    ```bash
+    ```
     dotnet run
     ```
 
@@ -148,7 +152,7 @@ Verifique a saída do console para confirmar o endereço exato.
 
 
 ## Documentação do Postman
-- CURL para importação e teste via Postman [Deixar CURL aqui].
+- CURL para importação e teste via Postman [[Baixe aqui](<Ambev Developer Evaluation API.postman_collection.json>)].
 
 ## Dependências
 ### Tecnologias Principais
@@ -170,4 +174,37 @@ v0.2: Versão com ambiente e conexão estáveis (CreateUser, GetUserById e GetAl
 
 ## Testes Funcionais
 
-[Adicionar Imagens]
+- 01 - Criação de Usuario (CreateUser)
+![alt text](01-CreateUser.png)
+
+- 02 - Geração Bearer Token (Auth)
+![alt text](02-AuthBearerToken.png)
+
+- 03 - Busca Usuario por Id (GetUserById)
+![alt text](03-GetUserById.png)
+
+- 04 - Busca todos os Users (GetAllUsers)
+![alt text](04-GetAllUsers.png)
+
+- 05 - Cria Produto (CreateProduct)
+![alt text](05-CreateProduct.png)
+
+- 06 - Busca todos Produtos (GetAllProducts)
+![alt text](06-GetAllProducts.png)
+
+- 07 - Cria Venda (CreateSale)
+![alt text](07-CreateSales.png)
+
+## Massa de dados no Banco pós Testes
+
+- 08 - Tabela Users via dBeaver
+![alt text](08-TableUsers.png)
+
+- 09 - Tabela Products via dBeaver
+![alt text](10-TableProducts.png)
+
+- 10 - Tabela Sales via dBeaver
+![alt text](09-TableSales.png)
+
+- 11 - Tabela ItemSales via dBeaver
+![alt text](11-TableItemSales.png)
