@@ -16,11 +16,12 @@ Para executar este projeto, certifique-se de que as seguintes ferramentas estão
 
 
 ### 2. Configurar Ambiente Docker
-- 2.1 Acessar a pasta onde consta o arquivo `docker-compose.yml`
-Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
+    
+- 2.1 Certifique-se de navegar até o diretório correto onde está o arquivo `docker-compose.yml`.
 
 - 2.2 Rodar o comando para iniciar o ambiente (Usando Docker).
-    -Execute o seguinte comando no terminal para construir e iniciar os contêineres:
+    - Execute o seguinte comando no terminal para construir e iniciar os contêineres.
+
         ```
         docker-compose up --build -d
         ```
@@ -114,12 +115,12 @@ Certifique-se de navegar até o diretório correto onde está o arquivo `docker-
 ### 5. Executando a Aplicação (WebAPI)
 Certifique-se de que o arquivo `.csproj` correto esteja especificado na opção `--project`, se necessário.
 
-5.1 Navegue até o projeto WebApi:
+- 5.1 Navegue até o projeto WebApi:
     ```
     cd template/backend/src/Ambev.DeveloperEvaluation.WebApi
     ```
 
-5.2 Execute a aplicação:
+- 5.2 Execute a aplicação:
     ```
     dotnet run
     ```
@@ -135,24 +136,26 @@ Verifique a saída do console para confirmar o endereço exato.
 
 ## APIs da Aplicação
 ### APIs Planejadas:
-- **API de Autenticação**: Gerencia login via e-mail e senha, gera token para Autenticação nos demais end-points.
-- **API de Produtos**: Busca informações de produtos e gerencia estoque.
-- **API de Usuários**: Gerencia cadastro de usuário, atualização e funções gerais.
-- **API de Vendas**: Gerencia vendas de um ou mais produtos e calcula descontos.
+- **Autenticação**: Gerencia login via e-mail e senha, gera token para Autenticação nos demais end-points.
+- **Produtos**: Busca informações de produtos e gerencia estoque.
+- **Usuários**: Gerencia cadastro de usuário, atualização e funções gerais.
+- **Vendas**: Gerencia vendas de um ou mais produtos e calcula descontos.
     - **Regra de Negocio de Vendas**: 
         - 0 a 3 itens sem desconto.
         - 4 a 10 itens = 10% de desconto.
         - 10 a 20 itens = 20% de desconto.
         - Acima de 20 itens = Não é possivel fazer a compra.
 
+
 ## Problemas Comuns e Esclarecimentos
-1. **Detalhes de Autenticação**:
-   - Autenticação é feita apenas por e-mail.
-   - O unico end-point que é possivel usar sem autenticação via Bearer Token é o Post "/api/Users" (CreateUser).
+- **Detalhes de Autenticação**:
+    - Autenticação é feita apenas por e-mail.
+    - O unico end-point que é possivel usar sem autenticação via Bearer Token é o Post "/api/Users" (CreateUser).
 
 
 ## Documentação do Postman
 - CURL para importação e teste via Postman [[Baixe aqui](<Ambev Developer Evaluation API.postman_collection.json>)].
+
 
 ## Dependências
 ### Tecnologias Principais
@@ -175,36 +178,36 @@ v0.2: Versão com ambiente e conexão estáveis (CreateUser, GetUserById e GetAl
 ## Testes Funcionais
 
 - 01 - Criação de Usuario (CreateUser)
-![alt text](01-CreateUser.png)
+![alt text](Imagens/01-CreateUser.png)
 
 - 02 - Geração Bearer Token (Auth)
-![alt text](02-AuthBearerToken.png)
+![alt text](Imagens/02-AuthBearerToken.png)
 
 - 03 - Busca Usuario por Id (GetUserById)
-![alt text](03-GetUserById.png)
+![alt text](Imagens/03-GetUserById.png)
 
 - 04 - Busca todos os Users (GetAllUsers)
-![alt text](04-GetAllUsers.png)
+![alt text](Imagens/04-GetAllUsers.png)
 
 - 05 - Cria Produto (CreateProduct)
-![alt text](05-CreateProduct.png)
+![alt text](Imagens/05-CreateProduct.png)
 
 - 06 - Busca todos Produtos (GetAllProducts)
-![alt text](06-GetAllProducts.png)
+![alt text](Imagens/06-GetAllProducts.png)
 
 - 07 - Cria Venda (CreateSale)
-![alt text](07-CreateSales.png)
+![alt text](Imagens/07-CreateSales.png)
 
 ## Massa de dados no Banco pós Testes
 
 - 08 - Tabela Users via dBeaver
-![alt text](08-TableUsers.png)
+![alt text](Imagens/08-TableUsers.png)
 
 - 09 - Tabela Products via dBeaver
-![alt text](10-TableProducts.png)
+![alt text](Imagens/10-TableProducts.png)
 
 - 10 - Tabela Sales via dBeaver
-![alt text](09-TableSales.png)
+![alt text](Imagens/09-TableSales.png)
 
 - 11 - Tabela ItemSales via dBeaver
-![alt text](11-TableItemSales.png)
+![alt text](Imagens/11-TableItemSales.png)
