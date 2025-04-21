@@ -20,6 +20,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     //[Authorize]
     public class ProductsController : BaseController
     {

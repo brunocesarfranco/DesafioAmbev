@@ -14,7 +14,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class SalesController : BaseController
     {
         private readonly IMediator _mediator;
