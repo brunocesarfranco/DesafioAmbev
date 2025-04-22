@@ -178,36 +178,36 @@ v0.2: Versão com ambiente e conexão estáveis (CreateUser, GetUserById e GetAl
 ## Testes Funcionais
 
 - 01 - Criação de Usuario (CreateUser)
-![alt text](Imagens/01-CreateUser.png)
+![alt text](TestesFuncionais/01-CreateUser.png)
 
 - 02 - Geração Bearer Token (Auth)
-![alt text](Imagens/02-AuthBearerToken.png)
+![alt text](TestesFuncionais/02-AuthBearerToken.png)
 
 - 03 - Busca Usuario por Id (GetUserById)
-![alt text](Imagens/03-GetUserById.png)
+![alt text](TestesFuncionais/03-GetUserById.png)
 
 - 04 - Busca todos os Users (GetAllUsers)
-![alt text](Imagens/04-GetAllUsers.png)
+![alt text](TestesFuncionais/04-GetAllUsers.png)
 
 - 05 - Cria Produto (CreateProduct)
-![alt text](Imagens/05-CreateProduct.png)
+![alt text](TestesFuncionais/05-CreateProduct.png)
 
 - 06 - Busca todos Produtos (GetAllProducts)
-![alt text](Imagens/06-GetAllProducts.png)
+![alt text](TestesFuncionais/06-GetAllProducts.png)
 
 - 07 - Cria Venda (CreateSale)
-![alt text](Imagens/07-CreateSales.png)
+![alt text](TestesFuncionais/07-CreateSales.png)
 
 ## Massa de dados no Banco pós Testes
 
 - 08 - Tabela Users via dBeaver
-![alt text](Imagens/08-TableUsers.png)
+![alt text](TestesFuncionais/08-TableUsers.png)
 
 - 09 - Tabela Products via dBeaver
-![alt text](Imagens/10-TableProducts.png)
+![alt text](TestesFuncionais/10-TableProducts.png)
 
 - 10 - Tabela Sales via dBeaver
-![alt text](Imagens/09-TableSales.png)
+![alt text](TestesFuncionais/09-TableSales.png)
 
 - 11 - Tabela ItemSales via dBeaver
-![alt text](Imagens/11-TableItemSales.png)
+![alt text](TestesFuncionais/11-TableItemSales.png)
